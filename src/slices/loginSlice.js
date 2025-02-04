@@ -35,7 +35,7 @@ export const postLoginAsync = createAsyncThunk("loginSlice/postLoginAsync" , asy
 
     console.log('res : ', res);
 
-    return res;   // 반드시 res를  반환한다. (중요!!)
+    return res;   // 반드시 res를  반환한다. (중요!!)  Promise 객체를 반환
     
 })
 
