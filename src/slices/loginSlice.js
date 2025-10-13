@@ -42,7 +42,7 @@ export const postLoginAsync = createAsyncThunk("loginSlice/postLoginAsync" , asy
 
 const loginSlice =  createSlice({
 
-    name: 'loginSlice',
+    name: 'login',  // 슬라이스 이름
     
     initialState: loadMemberCookie() || initialState,  // 쿠키가 없는 경우 초기값 사용
     
