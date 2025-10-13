@@ -40,23 +40,24 @@ export const postLoginAsync = createAsyncThunk("loginSlice/postLoginAsync" , asy
     
 })
 
-
+// Slice : 상태(state) 관리와 관련된 로직(액션 및 리듀서)을 모듈화하는 데 사용된다.
 const loginSlice =  createSlice({
 
     name: 'login',  // 슬라이스 이름
     
     initialState: loadMemberCookie() || initialState,  // 쿠키 정보가 있을 경우 쿠키에서 가져온 값을 상태의 초기값으로 사용
-    
+
+    // 상태와 액션을 받아 Slice 상태를 업데이트하는 리듀서 함수들의 집합
     reducers: {    
 
-        login: (state, action) => {
+        login: (state, action) => {  // 슬라이스의 현재 상태, 액션 : 디스패치 시 전달된 데이터(주로 action.payload))
 
             console.log('------------------------------- login');
                       
             console.log('action : ', action);
             /* 
                 { 
-                    type: 'loginSlice/login',
+                    type: 'login/login',   // [슬라이스 이름]/[리듀서 이름]
                     payload: { email: 'user1@gmail.com', password: '1111', ... }
                 }             
             */
@@ -111,8 +112,8 @@ const loginSlice =  createSlice({
 
 });
 
-
-export const { login, logout } = loginSlice.actions;  // 액션 생성자 함수
+// login과 logout 함수를 외부에서 사용할 수 있도록 export 하는 것입니다.
+export const { login, logout } = loginSlice.actions;  
 
 export default loginSlice.reducer;
 
