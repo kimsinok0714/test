@@ -5,7 +5,8 @@ import { setCookies, getCookies, removeCookie } from '../util/cookieUtil'
 
 
 const initialState = {
-    email: ''  
+    email: ''  ,
+    // nickname: ''
 }
 
 // 쿠키에 저장된 로그인 정보는 애플리케이션 실행 시에 사용되어야 한다.
@@ -44,7 +45,7 @@ const loginSlice =  createSlice({
 
     name: 'login',  // 슬라이스 이름
     
-    initialState: loadMemberCookie() || initialState,  // 쿠키가 없는 경우 초기값 사용
+    initialState: loadMemberCookie() || initialState,  // 쿠키 정보가 있을 경우 쿠키에서 가져온 값을 상태의 초기값으로 사용
     
     reducers: {    
 
