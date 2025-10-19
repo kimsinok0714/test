@@ -58,7 +58,7 @@ const loginSlice =  createSlice({
             console.log('action : ', action);
             /* 
                 { 
-                    type: 'login/login',   // [슬라이스 이름]/[리듀서 이름]
+                    type: 'loginSlice/login',   // [슬라이스 이름]/[리듀서 이름]
                     payload: { email: 'user1@gmail.com', password: '1111', ... }
                 }             
             */
