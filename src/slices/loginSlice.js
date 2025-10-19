@@ -44,7 +44,8 @@ export const postLoginAsync = createAsyncThunk("loginSlice/postLoginAsync" , asy
 const loginSlice =  createSlice({
 
     name: 'loginSlice',  // 슬라이스 이름
-    
+
+    // 사용자가 앱을 재실행하거나 새로고침했을 때 쿠키에 저장된 로그인 정보로 상태를 복원할 수 있습니다.
     initialState: loadMemberCookie() || initialState,  // 쿠키 정보가 있을 경우 쿠키에서 가져온 값을 상태의 초기값으로 사용
 
     // 상태와 액션을 받아 Slice 상태를 업데이트하는 리듀서 함수들의 집합
