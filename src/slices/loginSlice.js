@@ -25,11 +25,10 @@ const loadMemberCookie = () => {
     return memberInfo;
 }
 
-
+// 리덕스 비동기 액션 생성자 함수입니다.   "loginSlice/postLoginAsync" : 액션 타입
 // createAsyncThunk : Redux Toolkit에서 비동기 액션을 생성한다.
-// Redux에서 비동기 작업(예: API 요청)을 쉽게 처리할 수 있도록 도와주는 함수입니다.
-// Redux의 dispatch를 통해 postLoginAsync를 호출하면 내부적으로 비동기 요청을 수행하고, 그에 따른 상태 변화를 관리합니다.
-// "loginSlice/postLoginAsync" : 액션 타입
+/// Redux의 dispatch를 통해 postLoginAsync를 호출하면 내부적으로 비동기 요청을 수행하고, 그에 따른 상태 변화를 관리합니다.
+
 export const postLoginAsync = createAsyncThunk("loginSlice/postLoginAsync" , async (param) => {
     
     const res = await postLogin(param); // 비동기 함수 호출
@@ -81,12 +80,12 @@ const loginSlice =  createSlice({
     } ,
     extraReducers: (builder) => {  // 비동기 액션의 상태 변화에 따라 특정 로직을 실행하는 역할
         builder
-            .addCase(postLoginAsync.pending, (state, action) => {  // "postLoginAsync/pending"
+            .addCase(postLoginAsync.pending, (state, action) => {  // "loginSlice/postLoginAsync/pending"
 
                 console.log('pending');
 
             })
-            .addCase(postLoginAsync.fulfilled, (state, action) => { // 비동기 작업이 성공했을때 API 응답 데이터가 action.payload로 전달된다.
+            .addCase(postLoginAsync.fulfilled, (state, action) => { // "loginSlice/postLoginAsync/fulfilled" : 비동기 작업이 성공했을때 API 응답 데이터가 action.payload로 전달된다.
                
                 console.log('fulfilled');
                 
@@ -99,12 +98,11 @@ const loginSlice =  createSlice({
                 // 로그인 요청 수행 후 인증된 사용자 정보를 쿠키에 저장
                 if (!payload.error) {
                     setCookies('member', JSON.stringify(payload), 1);  // 1일 : JSON 문자열 반환
-                }
-               
+                }               
                 return payload;
 
             })
-            .addCase(postLoginAsync.rejected, (state, action) => { // 비동기 요청이 실패했을 때 실행됨. 에러 처리
+            .addCase(postLoginAsync.rejected, (state, action) => { // "loginSlice/postLoginAsync/rejected" : 비동기 요청이 실패했을 때 실행됨. 에러 처리
 
                 console.log('rejected');
 
