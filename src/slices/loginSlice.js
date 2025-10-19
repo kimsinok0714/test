@@ -43,7 +43,7 @@ export const postLoginAsync = createAsyncThunk("loginSlice/postLoginAsync" , asy
 // Slice : 상태(state) 관리와 관련된 로직(액션 및 리듀서)을 모듈화하는 데 사용된다.
 const loginSlice =  createSlice({
 
-    name: 'login',  // 슬라이스 이름
+    name: 'loginSlice',  // 슬라이스 이름
     
     initialState: loadMemberCookie() || initialState,  // 쿠키 정보가 있을 경우 쿠키에서 가져온 값을 상태의 초기값으로 사용
 
