@@ -18,11 +18,27 @@ const Item = () => {
                 console.log(data);
                 setItems(data);
             })
-            .catch(error => {
+            .catch(ex => {
+
+                 const errorMsg = ex.response.data.error;
+        
+                const errorStr = createSearchParams({ error : errorMsg }).toString();
+        
+                if ( errorMsg === 'REQUIRED_LOGIN' ) {
+                    alert('You must log in');
+                    navigate({pathname: '/login', search: errorStr});
+                    return;
+                }
+        
+                if ( errorMsg === 'ERROR_ACCESS_DENIED' ) {
+                    alert('Access denied');
+                    navigate({pathname: '/', search: errorStr});
+                    return;
+                }
                 // console.error('Error : ', error)
                 // alert('You must log in');
                 // navigate({pathname: '/login', search: errorStr});
-                exceptionHandler(error);
+                //exceptionHandler(error);
             })
 
     }, [])
