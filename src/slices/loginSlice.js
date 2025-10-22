@@ -27,7 +27,7 @@ const loadMemberCookie = () => {
 
 // 리덕스 비동기 액션 생성자 함수입니다.   "loginSlice/postLoginAsync" : 액션 타입
 // createAsyncThunk : Redux Toolkit에서 비동기 액션을 생성한다.
-/// Redux의 dispatch를 통해 postLoginAsync를 호출하면 내부적으로 비동기 요청을 수행하고, 그에 따른 상태 변화를 관리합니다.
+/// Redux의 dispatch를 통해 postLoginAsync를 호출하면 내부적으로 비동기 요청을 수행하고, 비동기 액션의 상태 변화에 따라 특정 로직을 수행할 수 있다.
 
 export const postLoginAsync = createAsyncThunk("loginSlice/postLoginAsync" , async (param) => {
     
