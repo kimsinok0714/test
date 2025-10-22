@@ -101,7 +101,7 @@ const loginSlice =  createSlice({
                 if (!payload.error) {
                     setCookies('member', JSON.stringify(payload), 1);  // 1일 : JSON 문자열 반환
                 }               
-                return payload;
+                return payload;     // Redux Store에서 해당 slice의 상태가 자동으로 업데이트 된다.
 
             })
             .addCase(postLoginAsync.rejected, (state, action) => { // "loginSlice/postLoginAsync/rejected" : 비동기 요청이 실패했을 때 실행됨. 에러 처리
