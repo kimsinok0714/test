@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const API_SERVER_HOST = 'http://localhost:8080';
 
-const prefix = `${API_SERVER_HOST}/api/v1/members`;
+const prefix = `${API_SERVER_HOST}/api/v1`;
 
 
 // 로그인 요청 : POST 요청
@@ -16,7 +16,7 @@ export const postLogin = async ( loginParam ) => {
     form.append('username', loginParam.email)
     form.append('password', loginParam.password)
 
-    const res = await axios.post(`${prefix}/login`, form, header)
+    const res = await axios.post(`${prefix}/members/login`, form, header)
 
     console.log('res.data : ', res.data);
 
