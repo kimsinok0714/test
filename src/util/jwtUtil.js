@@ -23,9 +23,10 @@ const refreshJWT = async ( accessToken, refreshToken ) => {
 
 }
 
-
-// HTTP 요청 헤더 (Authorization)에 Access Token 을 추가한다.
-// config : Axios 요청 설정(request configuration) 을 포함하는 객체
+// Axios 요청이 서버로 전송되기 직전에 쿠키 정보를 사용하여 로그인 여부를 검사한다.
+// 로그인 정보가 존재하면 Authorization 헤더에 인증 토큰을 자동으로 추가한다.
+// 로그인 정보가 없다면, Axios 요청을 취소하고 REQUIRED_LOGIN 에러를 발생시킵니다.
+// config : Axios 요청과 관련된 설정(request configuration) 을 포함하는 객체
 const beforeReq = ( config ) => {
 
     const memberInfo = getCookies("member");
@@ -34,7 +35,7 @@ const beforeReq = ( config ) => {
 
     if ( !memberInfo ) {
         console.log('Member not found');
-        
+        // Axios 인터셉터는 내부적으로 Promise 기반으로 동작합니다. Promise.reject(error)를 반환하면 Axios가 요청을 중단합니다.  
         return Promise.reject({
             response: { data: { error: 'REQUIRED_LOGIN' } }
         })
@@ -54,6 +55,7 @@ const requestFail = ( error ) => {
     
     console.log('requestFail!!')
 
+    // 반드시 다시 reject 해줘야 에러를 Axios에게 넘겨서 이후 .catch()에서 처리되게 합니다.
     return Promise.reject(error);
 
     
