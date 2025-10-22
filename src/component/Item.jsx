@@ -20,7 +20,7 @@ const Item = () => {
             })
             .catch(ex => {
 
-                 const errorMsg = ex.response.data.error;
+                const errorMsg = ex.response.data.error;
         
                 const errorStr = createSearchParams({ error : errorMsg }).toString();
         
@@ -35,9 +35,7 @@ const Item = () => {
                     navigate({pathname: '/', search: errorStr});
                     return;
                 }
-                // console.error('Error : ', error)
-                // alert('You must log in');
-                // navigate({pathname: '/login', search: errorStr});
+                
                 //exceptionHandler(error);
             })
 
