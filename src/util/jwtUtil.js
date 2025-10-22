@@ -56,13 +56,14 @@ const requestFail = ( error ) => {
     console.log('requestFail!!')
 
     // 반드시 다시 reject 해줘야 에러를 Axios에게 넘겨서 이후 .catch()에서 처리되게 합니다.
-    return Promise.reject(error);
+    return Promise.reject(error);   // error.response.data : 'REQUIRED_LOGIN'
 
     
 }
 
 
 // 서버의 응답을 받은 후 Axios가 응답 데이터를 처리하기 전에 응답 인터셉터가 실행된다.
+// JWT 액세스 토큰이 만료됐을 때 자동으로 갱신하고, 실패한 요청을 다시 재시도합니다.
 // res : Axios가 서버로부터 받은 응답을 포함하는 객체
 const beforeRes = async ( res ) => {
 
@@ -102,7 +103,7 @@ const responseFail = ( error ) => {
 
     console.log('------------------------- responseFail');
 
-    console.log('error : ', error);  // error.response.data : 'REQUIRED_LOGIN'
+    console.log('error : ', error); 
 
     return Promise.reject(error);
 
