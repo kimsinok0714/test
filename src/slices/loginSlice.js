@@ -63,7 +63,7 @@ const loginSlice =  createSlice({
             */
             console.log('action.payload : {}', action.payload);  
              
-            setCookies('member', JSON.stringify(payload), 1);  // 1일 : JSON 문자열 반환
+            setCookies('member', JSON.stringify(action.payload), 1);  // 1일 : JSON 문자열 반환
 
             // Redux는 불변성을 유지하기 때문에 상태를 직접 수정하지 않고, 새로운 상태를 반환하여 업데이트 한다.
             return { email: action.payload.email }
